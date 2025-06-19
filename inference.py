@@ -43,5 +43,5 @@ if __name__ == "__main__":
         continue 
      
      img =  Image.open(img_path).convert("RGB")
-     prediction = predict_image(img_path, "face_recognition_weights.py", class_name, transfrom, device)
+     prediction = predict_image(img_path, "face_recognition_weights.py", class_name, transform, device)
      print(f"Predicted class: {prediction}")

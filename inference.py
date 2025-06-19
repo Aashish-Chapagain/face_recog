@@ -1,4 +1,3 @@
-from imagerecogfunc import train_model
 import torch
 from PIL import Image
 from torchvision import transforms, models, datasets
@@ -26,16 +25,9 @@ if __name__ == "__main__":
     weights = ResNet18_Weights.DEFAULT
     transform = weights.transforms()
 
-    # transfrom = transforms.Compose([
-    #     transforms.Resize((224, 224)),
-    #     transforms.ToTensor(),
-    #     transforms.Normalize([0.5]*3, [0.5]*3)
-    # ])
-
     with open("classes.json", "r") as f:
         class_name = json.load(f)
     
-    # model = models.resnet18(pretrained=False)
 
     model = resnet18(weights=weights)
     model.fc = nn.Linear(model.fc.in_features, len(class_name))

@@ -13,12 +13,7 @@ def train_model(data_path, epochs = 15, dataloader_batch = 16, device = "cpu", l
     weights = ResNet18_Weights.DEFAULT
     transform =  weights.transforms()  
 
-
-
-    # transform = transforms.Compose([
-    #     transforms.Resize((224, 224)),
-    #     transforms.ToTensor(),
-    #     transforms.Normalize(mean = weights.meta["mean"], std = weights.meta["std"])])  
+    
 
 
     dataset = datasets.ImageFolder(data_path, transform = transform)

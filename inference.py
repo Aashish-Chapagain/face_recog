@@ -1,6 +1,5 @@
 import torch
 from PIL import Image
-from torchvision import transforms, models, datasets
 from torchvision.models import resnet18, ResNet18_Weights 
 from torch import nn
 import json
@@ -31,17 +30,18 @@ if __name__ == "__main__":
 
     model = resnet18(weights=weights)
     model.fc = nn.Linear(model.fc.in_features, len(class_name))
-    model.load_state_dict(torch.load("model.pth", map_location=device))
+    model.load_state_dict(torch.load("face_recognition_weights.pth", map_location=device))
     model = model.to(device)
 
 
     while True:
 
      img_path = input("Enter the path to the image: ")
-     if not os.path.exists(img_path):
-        print("Image path does not exist. Please provide a valid path.")
-        continue 
-     
+     if not os.path.exists(img_path) or not os.path.isfile(img_path) or not img_path.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif')):
+      print("Invalid image file. Make sure the path exists, is a file, and is a supported image format.")
+      continue
+
      img =  Image.open(img_path).convert("RGB")
-     prediction = predict_image(img_path, "face_recognition_weights.py", class_name, transform, device)
+     img.show()
+     prediction = predict_image(img_path, model , class_name, transform, device)
      print(f"Predicted class: {prediction}")

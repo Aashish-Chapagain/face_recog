@@ -37,7 +37,7 @@ if __name__ == "__main__":
     while True:
 
      img_path = input("Enter the path to the image: ")
-     if not os.path.exists(img_path) or not os.path.isfile(img_path) or not img_path.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif')):
+     if not os.path.exists(img_path) or not os.path.isfile(img_path) or not img_path.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif','.avif')):
       print("Invalid image file. Make sure the path exists, is a file, and is a supported image format.")
       continue
 
